@@ -4,7 +4,7 @@ Reading this as: a personal creator homepage for SuperFurias, in an elegant goth
 
 ## Identity
 
-SuperFurias is an Italian otaku, gamer, and Minecraft modder from Cosenza. The site is nocturnal and elegant, not horror-gore. The white-haired, red-eyed, black-dressed vampire is a visual archetype, not a portrait of the owner. No character illustration is used. The mood comes from the palette, the crescent mark, the type, and the ember layer.
+SuperFurias is an Italian otaku, gamer, NEET, and Minecraft modder from Cosenza. The site is nocturnal and elegant, not horror-gore. The white-haired, red-eyed, black-dressed vampire is a visual archetype, not a portrait of the owner. No character illustration is used. The mood comes from the palette, the crescent mark, the type, and the ember layer.
 
 ## Personality
 

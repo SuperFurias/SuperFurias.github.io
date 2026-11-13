@@ -1,6 +1,6 @@
 # SuperFurias: personal site
 
-A single-page, black-and-red vampire-themed personal site for **SuperFurias**: otaku, gamer, Minecraft modder, and Twitch streamer from Cosenza, Italy.
+A single-page, black-and-red vampire-themed personal site for **SuperFurias**: otaku, gamer, NEET, Minecraft modder, and Twitch streamer from Cosenza, Italy.
 
 Pure static HTML, CSS, and vanilla JavaScript. No frameworks, no build step, no server code, no API secrets. Ready for GitHub Pages.
 
