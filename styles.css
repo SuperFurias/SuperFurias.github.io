@@ -205,11 +205,6 @@ ul {
   scroll-margin-top: 0;
 }
 
-main:focus-visible {
-  outline: 2px solid var(--red-500);
-  outline-offset: -2px;
-}
-
 .site-header,
 main,
 .site-footer {
