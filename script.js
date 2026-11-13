@@ -2,7 +2,6 @@
   "use strict";
 
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
   const header = document.getElementById("site-header");
   const year = document.getElementById("year");
@@ -191,6 +190,8 @@
   const liveNote = document.getElementById("live-note");
   const liveFacade = document.getElementById("live-facade");
   const liveEmbeds = document.getElementById("live-embeds");
+  const liveLoading = document.getElementById("live-loading");
+  const liveFallback = document.getElementById("live-fallback");
   const loadStream = document.getElementById("load-stream");
 
   const setLiveState = (collapsed) => {
@@ -215,7 +216,26 @@
 
   if (loadStream && liveFacade && liveEmbeds && liveToggle) {
     loadStream.addEventListener("click", () => {
-      liveEmbeds.querySelectorAll("iframe[data-src]").forEach((frame) => {
+      const frames = Array.from(liveEmbeds.querySelectorAll("iframe[data-src]"));
+      let remaining = frames.length;
+      let settled = false;
+
+      const finishLoading = () => {
+        if (settled) return;
+        settled = true;
+        if (liveLoading) liveLoading.hidden = true;
+      };
+
+      frames.forEach((frame) => {
+        frame.addEventListener(
+          "load",
+          () => {
+            remaining -= 1;
+            if (remaining <= 0) finishLoading();
+          },
+          { once: true }
+        );
+
         if (!frame.getAttribute("src")) {
           frame.setAttribute("src", frame.getAttribute("data-src"));
         }
@@ -224,32 +244,17 @@
       liveFacade.hidden = true;
       liveEmbeds.hidden = false;
       liveToggle.hidden = false;
+      if (liveLoading) liveLoading.hidden = false;
+      if (liveFallback) liveFallback.hidden = true;
       setLiveState(false);
       liveToggle.focus({ preventScroll: true });
+
+      window.setTimeout(() => {
+        if (settled) return;
+        finishLoading();
+        if (liveFallback) liveFallback.hidden = false;
+      }, 9000);
     });
-  }
-
-  const featureCard = document.querySelector(".bento-feature");
-
-  if (featureCard) {
-    featureCard.addEventListener("pointermove", (event) => {
-      if (!finePointer.matches || reducedMotion.matches) return;
-
-      const rect = featureCard.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width;
-      const y = (event.clientY - rect.top) / rect.height;
-      const rotateX = ((0.5 - y) * 2.4).toFixed(2);
-      const rotateY = ((x - 0.5) * 2.4).toFixed(2);
-
-      featureCard.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px)`;
-    });
-
-    const resetTilt = () => {
-      featureCard.style.transform = "";
-    };
-
-    featureCard.addEventListener("pointerleave", resetTilt);
-    featureCard.addEventListener("blur", resetTilt, true);
   }
 
   const canvas = document.getElementById("embers");
@@ -392,7 +397,6 @@
       if (event.matches) {
         revealAll();
         revealElements.forEach((element) => element.classList.add("is-visible"));
-        if (featureCard) featureCard.style.transform = "";
       }
     };
 

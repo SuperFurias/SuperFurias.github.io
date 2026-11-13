@@ -1,4 +1,4 @@
-# SuperFurias — personal site
+# SuperFurias: personal site
 
 A single-page, black-and-red vampire-themed personal site for **SuperFurias**: otaku, gamer, Minecraft modder, and Twitch streamer from Cosenza, Italy.
 
@@ -12,6 +12,7 @@ Pure static HTML, CSS, and vanilla JavaScript. No frameworks, no build step, no 
 ├── styles.css
 ├── script.js
 ├── README.md
+├── DESIGN.md
 ├── .nojekyll
 ├── robots.txt
 ├── sitemap.xml
@@ -32,6 +33,10 @@ Pure static HTML, CSS, and vanilla JavaScript. No frameworks, no build step, no 
         ├── cinzel-latin.woff2
         └── outfit-latin.woff2
 ```
+
+## Design direction
+
+`DESIGN.md` holds the palette, typography, dials, and the reasons behind the glass, glow, bento, and motion decisions.
 
 ## Local preview
 
@@ -74,6 +79,7 @@ No custom domain is configured, so there is no `CNAME` file. If a custom domain 
 - The player and chat are the official Twitch iframes. No client ID, token, or secret is used.
 - The embeds load **only after clicking “Load player & chat”**, so no Twitch scripts, cookies, or players run on first paint.
 - The page does **not** claim the channel is live. Twitch itself renders the real online/offline state.
+- A loading state covers the player and chat while Twitch connects. If the embeds do not load, a fallback link opens the channel in a new tab.
 - The “hide player” control only collapses the embeds for the current view and never changes the channel.
 - If the channel changes, remember to update the `parent` values if the site's domain changes.
 
